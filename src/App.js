@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import Customer from './components/Customer'
 import './App.css';
+import Table from '@mui/material/Table'
+import TableRow from '@mui/material/TableRow'
+import TableBody from '@mui/material/TableBody'
+import TableHead from '@mui/material/TableHead'
+import TableCell from '@mui/material/TableCell'
+import Paper from '@mui/material/Paper'
 
 const custom = [{
   'id': 1,
@@ -30,9 +36,20 @@ const custom = [{
 class App extends Component {
   render() {
     return (
-      <div>
-        {
-           custom.map (r => {
+      <Paper>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>번호</TableCell>
+              <TableCell>사진</TableCell>
+              <TableCell>이름</TableCell>
+              <TableCell>생일</TableCell>
+              <TableCell>성별</TableCell>
+              <TableCell>직업</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+          {custom.map (r => {
               return (
              <Customer 
               key={r.id}
@@ -42,12 +59,10 @@ class App extends Component {
               birthday={r.birthday}
               gender={r.gender}
               job={r.job}
-              />
-      
-      )
-    })
-  }
-  </div>
+              />)})}
+          </TableBody>
+        </Table>
+    </Paper>
 )
   }
 }
