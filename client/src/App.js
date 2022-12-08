@@ -9,6 +9,7 @@ import TableCell from '@mui/material/TableCell'
 import Paper from '@mui/material/Paper'
 import { CircularProgress } from '@mui/material';
 import { ClassNames } from '@emotion/react';
+import CustomerAdd from './components/CustomerAdd';
 
 const styles = theme => ({
   progress: {
@@ -43,6 +44,7 @@ class App extends Component {
 
   render() {
     return (
+      <div>
       <Paper>
         <Table>
           <TableHead>
@@ -76,7 +78,9 @@ class App extends Component {
           </TableBody>
         </Table>
     </Paper>
-)
+    <CustomerAdd/>
+    </div>
+    );
   }
 }
 
