@@ -8,32 +8,26 @@ import TableHead from '@mui/material/TableHead'
 import TableCell from '@mui/material/TableCell'
 import Paper from '@mui/material/Paper'
 
-const custom = [{
-  'id': 1,
-  'image': 'https://placeimg.com/64/64/1',
-  'name': '윤상복',
-  'birthday': '930515',
-  'gender': '남자',
-  'job': '세무사'
-},
-{
-  'id': 2,
-  'image': 'https://placeimg.com/64/64/2',
-  'name': '김남자',
-  'birthday': '900515',
-  'gender': '남자',
-  'job': '여대생'
-},
-{
-  'id': 3,
-  'image': 'https://placeimg.com/64/64/3',
-  'name': '윤여자',
-  'birthday': '910515',
-  'gender': '여자',
-  'job': '남대생'
-},]
+
 
 class App extends Component {
+
+  state = {
+    customers: ""
+  }
+
+  componentDidMount() {
+    this.callApi()
+      .then(res => this.setState({customers: res}))
+      .catch(err => console.log(err));
+  }
+
+  callApi = async () => {
+    const response = await fetch('/api/customers');
+    const body = await response.json();
+    return body;
+  }
+
   render() {
     return (
       <Paper>
@@ -49,7 +43,7 @@ class App extends Component {
             </TableRow>
           </TableHead>
           <TableBody>
-          {custom.map (r => {
+          {this.state.customers ? this.state.customers.map (r => {
               return (
              <Customer 
               key={r.id}
@@ -59,7 +53,7 @@ class App extends Component {
               birthday={r.birthday}
               gender={r.gender}
               job={r.job}
-              />)})}
+              />)}) : ""}
           </TableBody>
         </Table>
     </Paper>
